@@ -11,8 +11,8 @@ detectors. Included are:
 Use the number keys to select an edge detector:
 
 1. Sobel
-2. Roberts
-3. Prewitt
+2. Prewitt
+3. Roberts
 4. Scharr
 
 Press the 'o' key to display the original image. Press the 'e' key to
