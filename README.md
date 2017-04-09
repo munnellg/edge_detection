@@ -7,6 +7,7 @@ detectors. Included are:
 + Roberts
 + Prewitt
 + Scharr
++ Sobel 5x5
 
 Use the number keys to select an edge detector:
 
@@ -14,6 +15,7 @@ Use the number keys to select an edge detector:
 2. Prewitt
 3. Roberts
 4. Scharr
+5. Sobel 5x5
 
 Press the 'o' key to display the original image. Press the 'e' key to
 return the thresholded edge image.

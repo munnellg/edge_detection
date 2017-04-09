@@ -16,14 +16,18 @@
 #define SCHARR_MATRIX_WIDTH 3
 #define SCHARR_MATRIX_HEIGHT 3
 
-#define MATRIX_MAX_WIDTH 3
-#define MATRIX_MAX_HEIGHT 3
+#define SOBEL5X5_MATRIX_WIDTH 5
+#define SOBEL5X5_MATRIX_HEIGHT 5
+
+#define MATRIX_MAX_WIDTH 5
+#define MATRIX_MAX_HEIGHT 5
 
 const char* CONVOLUTION_NAMES[] = {
 	"Sobel (3x3)",
 	"Prewitt (3x3)",
 	"Roberts (2x2)",
-	"Scharr (3x3)"
+	"Scharr (3x3)",
+	"Sobel (5x5)"
 };
 
 const char* NORMALIZATION_NAMES[] = {
@@ -47,6 +51,7 @@ typedef enum {
 	PREWITT,
 	ROBERTS,
 	SCHARR,
+	SOBEL5X5,
 	NUM_MATRICES
 } ConvolutionMode;
 
@@ -114,6 +119,7 @@ void SobelConvolutionMatrix_init( struct ConvolutionMatrix* matrix );
 void RobertsConvolutionMatrix_init( struct ConvolutionMatrix* matrix );
 void PrewittConvolutionMatrix_init( struct ConvolutionMatrix* matrix );
 void ScharrConvolutionMatrix_init( struct ConvolutionMatrix* matrix );
+void Sobel5x5ConvolutionMatrix_init( struct ConvolutionMatrix* matrix );
 Uint32 ConvolutionMatrix_convolve ( struct ConvolutionMatrix* matrix, SDL_Surface* image, int x, int y );
 Uint32 ConvolutionMatrix_max_output( struct ConvolutionMatrix* matrix, Uint32 max_input );
 
@@ -279,6 +285,9 @@ void ImageProcessor_set_convolution_mode ( struct ImageProcessor* ip, Convolutio
 		break;
 	case SCHARR:
 		ScharrConvolutionMatrix_init( &ip->edge_detector->matrix);
+		break;
+	case SOBEL5X5:
+		Sobel5x5ConvolutionMatrix_init( &ip->edge_detector->matrix);
 		break;
 	default:
 		return;
@@ -556,6 +565,29 @@ void PrewittConvolutionMatrix_init( struct ConvolutionMatrix* matrix ) {
 			{ 1,  1,  1},
 			{ 0,  0,  0},
 			{-1, -1, -1}
+		}
+	};
+
+	*matrix = m;
+}
+
+void Sobel5x5ConvolutionMatrix_init( struct ConvolutionMatrix* matrix ) {
+	struct ConvolutionMatrix m = {
+		.width = SOBEL5X5_MATRIX_WIDTH,
+		.height = SOBEL5X5_MATRIX_HEIGHT,
+		.x_kernel = {
+			{1,  2, 0,  -2, -1},
+			{4,  8, 0,  -4, -8},
+			{6, 12, 0, -12, -6},
+			{1,  2, 0,  -2, -1},
+			{4,  8, 0,  -4, -8},
+		},
+		.y_kernel = {
+			{ -1, -4,  -6, -4, -1},
+			{ -2, -8, -12, -8, -2},
+			{  0,  0,   0,  0,  0},
+			{  2,  8,  12,  8,  2},
+			{  1,  4,   6,  4,  1},
 		}
 	};
 
