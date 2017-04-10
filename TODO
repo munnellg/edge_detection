@@ -1,2 +1,5 @@
 + Fix image loading bugs. Issues when thresholding numerous image
   formats
+
++ Add region highlighting so we can see what blobs are present in the
+  image

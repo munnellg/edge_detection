@@ -618,8 +618,8 @@ Uint32 ConvolutionMatrix_convolve ( struct ConvolutionMatrix* matrix, SDL_Surfac
 	int grad_x, grad_y;
 	Uint32 pixel, r, g, b, a;
 
-	int min_y = y0-matrix->height/3;
-	int min_x = x0-matrix->width/3;
+	int min_y = y0-(matrix->height-1)/2;
+	int min_x = x0-(matrix->width-1)/2;
 
 	grad_x = 0;
 	grad_y = 0;
