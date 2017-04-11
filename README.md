@@ -20,7 +20,7 @@ Use the number keys to select an edge detector:
 Press the 'o' key to display the original image. Press the 'e' key to
 return the thresholded edge image.
 
-Tool also normalizes gradient outputs so that they like between 0
+Tool also normalizes gradient outputs so that they lie between 0
 and 255. This is achieved through a couple of methods which the user
 may switch between
 
