@@ -3,3 +3,9 @@
 
 + Add region highlighting so we can see what blobs are present in the
   image
+
++ Reduce dependecy on SDL for image manipulation
+
++ Add multi-stage edge detection e.g. Canny
+
++ Include non-maximum suppression
